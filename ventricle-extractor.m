@@ -2,7 +2,6 @@ clear all
 close all
 clc
 
-%% Ex. 1a
 % The I-O interface is implemented using the uigetfile function that displays 
 % a dialog box in order to allow the user to select the first '.IMA' DICOM image from
 % the current folder. The function returns the filename and path strings of
@@ -10,7 +9,6 @@ clc
 
 [filename, pathname] = uigetfile('*.IMA', 'Pick the first DICOM file');
 
-%% Ex. 1b
 % Once obtained the filename string of the selected image, the DICOM image is
 % read using the proper dicomread MATLAB command. The function returns the
 % data of the image in the matrix 'I' and in the case of indexed image the color map 'm'.
@@ -37,7 +35,6 @@ im_num= info.CardiacNumberOfImages;
 
 Icat= zeros (im_height, im_width, im_num); 
 
-%% Ex. 1c
 % In order to fill the Icat array with the DICOM images, all the images in the 
 % current folder are firstly listed in the folder 'images' using the dir command. 
 % Then using a loop all the images listed are read and saved in the 'Icat' array 
@@ -52,7 +49,6 @@ for i=1:length (images)
     figure (26), subplot (5, 5, i),  imshow (Icat (:, :, i), []), title(['Image ',num2str(i),'']); 
     
      
-    %% Ex. 1.1d
     % In order to enhance the contrast in the images, the stretchlim function
     % has been used to find the optimal gray value limits to then stretch
     % the histogram images with the imadjust command. 
@@ -64,7 +60,6 @@ for i=1:length (images)
     figure (28), subplot (5, 5, i),  imshow (Icat_st (:, :, i), []), title(['Stretched Image ',num2str(i),'']); 
 end 
 
-%% Ex. 1.2d
 % An I-O interface is proposed using the questdlg command in order to ask the user 
 % to select a ROI for each image.   
 
@@ -114,7 +109,6 @@ while strcmp (ans, 'No')
         end   
     end
 
-%% Ex. 1.1e
 % At the end, the final result is shown and the user is asked if satisfied
 % of the traced contours. 
 
@@ -122,7 +116,6 @@ ans = questdlg('Are you satisfied with the traced contours?','Yes','No');
 
 end 
 
-%% Ex. 1.2e
 % A positive answer to the previous question allows the user to save the
 % struct containing the coordinates of the contours traced for each image
 % 'coord_cont' with the desidered name; a negative one brings the user back to
